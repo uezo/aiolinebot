@@ -10,9 +10,11 @@ setup(
     maintainer="uezo",
     maintainer_email="uezo@uezo.net",
     description="AioLineBotApi provides asynchronous interface for LINE messaging API",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     packages=find_packages(exclude=["examples*"]),
     install_requires=["line-bot-sdk", "aiohttp"],
-    license="MIT",
+    license="Apache v2",
     classifiers=[
         "Programming Language :: Python :: 3"
     ]
