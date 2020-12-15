@@ -187,7 +187,9 @@ class AioHttpClient(HttpClient):
         return aio_response
 
     async def put(self, url, headers=None, data=None, timeout=None):
-        """DELETE request.
+        """PUT request.
+
+        TODO: This is a dummy method to prevent error in line-bot-sdk 1.18
 
         :param str url: Request url
         :param dict headers: (optional) Request headers
@@ -200,15 +202,3 @@ class AioHttpClient(HttpClient):
         :return: AioHttpResponse instance
         """
         raise NotImplementedError
-        if timeout is None:
-            timeout = self.timeout
-
-        async with aiohttp.ClientSession() as client_session:
-            async with client_session.delete(
-                url, headers=headers, data=data, timeout=timeout
-            ) as resp:
-                aio_response = AioHttpResponse(
-                    resp.status, resp.headers,
-                    content=await resp.content.read())
-
-        return aio_response
