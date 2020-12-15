@@ -185,3 +185,30 @@ class AioHttpClient(HttpClient):
                     content=await resp.content.read())
 
         return aio_response
+
+    async def put(self, url, headers=None, data=None, timeout=None):
+        """DELETE request.
+
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param data: (optional) Dictionary, bytes, or file-like object to send in the body
+        :param timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float
+            Default is :py:attr:`self.timeout`
+        :type timeout: float
+        :rtype: :py:class:`AioHttpResponse`
+        :return: AioHttpResponse instance
+        """
+        raise NotImplementedError
+        if timeout is None:
+            timeout = self.timeout
+
+        async with aiohttp.ClientSession() as client_session:
+            async with client_session.delete(
+                url, headers=headers, data=data, timeout=timeout
+            ) as resp:
+                aio_response = AioHttpResponse(
+                    resp.status, resp.headers,
+                    content=await resp.content.read())
+
+        return aio_response
