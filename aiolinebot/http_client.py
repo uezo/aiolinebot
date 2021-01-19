@@ -201,4 +201,15 @@ class AioHttpClient(HttpClient):
         :rtype: :py:class:`AioHttpResponse`
         :return: AioHttpResponse instance
         """
-        raise NotImplementedError
+        if timeout is None:
+            timeout = self.timeout
+
+        async with aiohttp.ClientSession() as client_session:
+            async with client_session.put(
+                url, headers=headers, data=data, timeout=timeout
+            ) as resp:
+                aio_response = AioHttpResponse(
+                    resp.status, resp.headers,
+                    content=await resp.content.read())
+
+        return aio_response
