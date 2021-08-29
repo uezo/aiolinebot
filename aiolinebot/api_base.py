@@ -13,6 +13,7 @@ from linebot.models import (
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
     MessageProgressNarrowcastResponse,
 )
+from linebot.models.responses import Group
 from .http_client import AioHttpClient
 
 
